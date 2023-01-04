@@ -26,22 +26,71 @@ public class MainActivity extends AppCompatActivity {
         Kotlin concurrency utilities (https://developer.android.com/topic/libraries/architecture/coroutines) instead.
      */
     private class RequestTask extends AsyncTask<Void, Void, Response> {
+        private String requestUrl, requestMethod, requestBody;
+
+        public RequestTask(String requestUrl) {
+            this.requestUrl = requestUrl;
+            requestMethod = "GET";
+        }
+
+        public RequestTask(String requestUrl, String requestMethod) {
+            this.requestUrl = requestUrl;
+            this.requestMethod = requestMethod;
+        }
+
+        public RequestTask(String requestUrl, String requestMethod, String requestBody) {
+            this.requestUrl = requestUrl;
+            this.requestMethod = requestMethod;
+            this.requestBody = requestBody;
+        }
 
 
         @Override
         protected Response doInBackground(Void... voids) {
+            Response response = null;
             try {
-                Response response = RequestHandler.get(base_url);
-                String people = response.getContent();
-                //-- other thread ---
-                runOnUiThread(() -> {
-                    peopleTextview.setText(people);
-                });
+                switch (requestMethod) {
+                    case "GET":
+                        response = RequestHandler.get(base_url);
+                        String people = response.getContent();
+                        //-- write other thread ---
+                        runOnUiThread(() -> {
+                            peopleTextview.setText(people);
+                        });
+                        break;
+                    case "POST":
+                        response = RequestHandler.post(requestUrl, requestBody);
+                        break;
+                }
+
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return null;
+            return response;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            switch (requestMethod){
+                case "GET":
+                    String people = response.getContent();
+                    peopleTextview.setText(people);
+                    break;
+                case "POST":
+                    if (response.getResponseCode() == 201){
+                        RequestTask task=new RequestTask(base_url);
+                        task.execute();
+                    }
+                    break;
+            }
+
         }
     }
 
@@ -50,7 +99,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        RequestTask task = new RequestTask();
+        submitButton.setOnClickListener(view -> {
+            //-- add new person
+            String name = nameInput.getText().toString().trim();
+            String email = emailInput.getText().toString().trim();
+            String age = ageInput.getText().toString().trim();
+            // TODO: validate
+            String json = String.format("{\"name\": \"%s\", \"email\": \"%5\", \"age\": \"%s\"}", name, email, age);
+            RequestTask task = new RequestTask(base_url);
+            task.execute();
+        });
+        RequestTask task = new RequestTask(base_url);
         task.execute();
 
     }
