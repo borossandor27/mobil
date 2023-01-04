@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -60,5 +61,7 @@ public class MainActivity extends AppCompatActivity {
         ageInput = findViewById(R.id.ageInput);
         submitButton = findViewById(R.id.submitButton);
         peopleTextview = findViewById(R.id.textPeople);
+        //-- gorgetes figyelese -----------------
+        peopleTextview.setMovementMethod(new ScrollingMovementMethod());
     }
 }
