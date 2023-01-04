@@ -1,0 +1,3 @@
+Bemásolás vagy létrehozás:
+- Response.java
+- RequestHandler.java
