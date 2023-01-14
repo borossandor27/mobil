@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
-            View view = inflater.inflate(R.layout.person_list_item, parent);
+            View view = inflater.inflate(R.layout.person_list_item, null);
             Person actualPerson = people.get(position);
             TextView display = view.findViewById(R.id.display);
             TextView update = view.findViewById(R.id.update);

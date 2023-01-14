@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:weightSum="2"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -28,16 +26,16 @@
                 android:text="Bounce" />
 
             <Button
-                android:id="@+id/buttonFaidIn"
+                android:id="@+id/buttonFadeIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Faid in" />
+                android:text="Fade In" />
 
             <Button
-                android:id="@+id/buttonFaidOut"
+                android:id="@+id/buttonFadeOut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Faid out" />
+                android:text="Fade Out" />
 
             <Button
                 android:id="@+id/buttonRotate"
@@ -49,15 +47,13 @@
                 android:id="@+id/buttonZoomIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Zoom in" />
+                android:text="Zoom In" />
 
             <Button
                 android:id="@+id/buttonZoomOut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Zoom out" />
-
-
+                android:text="Zoom Out" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +77,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Fade in"
+                android:text="Fade In"
                 android:textAlignment="center" />
 
             <TextView
@@ -90,13 +86,14 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Fade out"
+                android:text="Fade Out"
                 android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/textViewRotate"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Rotate"
@@ -108,7 +105,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Zoom in"
+                android:text="Zoom In"
                 android:textAlignment="center" />
 
             <TextView
@@ -117,11 +114,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Zoom out"
+                android:text="Fade Out"
                 android:textAlignment="center" />
 
         </LinearLayout>
-
     </LinearLayout>
 
     <Button
@@ -135,6 +131,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/frame_anim" />
-
 
 </LinearLayout>
