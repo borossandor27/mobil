@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -95,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
                 case "GET":
                     String content = response.getContent();
                     // -- https://github.com/google/gson --
-                    Gson konverter = new Gson();
-                    List<Person> people = Arrays.asList( konverter.fromJson(content,Person[].class));
-                    PeopleAdapter adapter=new PeopleAdapter(people);
+                    Gson converter = new Gson();
+                    List<Person> people = Arrays.asList(converter.fromJson(content, Person[].class));
+                    PeopleAdapter adapter = new PeopleAdapter(people);
                     peopleListView.setAdapter(adapter);
                     break;
                 case "POST":
@@ -120,15 +121,20 @@ public class MainActivity extends AppCompatActivity {
             //-- add new person
             String name = nameInput.getText().toString().trim();
             String email = emailInput.getText().toString().trim();
-            String age = ageInput.getText().toString().trim();
+            String ageText = ageInput.getText().toString().trim();
             // TODO: validate
-            String json = String.format("{\"name\": \"%s\", \"email\": \"%5\", \"age\": \"%s\"}", name, email, age);
-            RequestTask task = new RequestTask(base_url);
+            int age = Integer.parseInt(ageText);
+            Person person = new Person(0, name, email, age);
+            Gson converter = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String json = converter.toJson(person);
+            RequestTask task = new RequestTask(base_url, "POST", json);
             task.execute();
+            nameInput.setText("", TextView.BufferType.EDITABLE);
+            emailInput.setText("", TextView.BufferType.EDITABLE);
+            ageInput.setText("", TextView.BufferType.EDITABLE);
         });
         RequestTask task = new RequestTask(base_url);
         task.execute();
-
     }
 
     private void init() {
@@ -136,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.emailInput);
         ageInput = findViewById(R.id.ageInput);
         submitButton = findViewById(R.id.submitButton);
-        peopleListView=findViewById(R.id.peopleListView);
+        peopleListView = findViewById(R.id.peopleListView);
         peopleTextview = findViewById(R.id.textPeople);
         //-- gorgetes figyelese -----------------
         peopleTextview.setMovementMethod(new ScrollingMovementMethod());
