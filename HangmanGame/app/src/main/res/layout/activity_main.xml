@@ -37,18 +37,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-       <androidx.constraintlayout.helper.widget.Flow
+       <LinearLayout
+           android:id="@+id/linearLayoutLetters"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:padding="16dp"
-           />
-
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:paddingHorizontal="18dp"
-           android:text="A"
-           android:textSize="24sp"/>
+           android:orientation="horizontal"
+           >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="A"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="b"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="c"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="A"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="A"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="A"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="A"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="d"/>
+       </LinearLayout>
     </LinearLayout>
 
 

@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     char[] alphabet_en = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     char[] alphabet_hu = "aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz".toCharArray();
     char[] alphabet_ru = {'\u0410', '\u0411', '\u0412', '\u0413', '\u0414', '\u0415', '\u0401', '\u0416', '\u0417', '\u0418', '\u0419', '\u041A', '\u041B', '\u041C', '\u041D', '\u041E', '\u041F', '\u0420', '\u0421', '\u0422', '\u0423', '\u0424', '\u0425', '\u0426', '\u0427', '\u0428', '\u0429', '\u042A', '\u042B', '\u042C', '\u042D', '\u042E', '\u042F'};
-    //char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
+    //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
     public final int MAX_ERRORS = 11; //-- 11 kép van
 
     @Override
@@ -27,7 +30,21 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+        addLetterButtons(alphabet_hu);
         return true;
+    }
+
+    private void addLetterButtons(char[] letters) {
+        for (char ch : letters) {
+            Button myButton = new Button(this);
+            myButton.setText(String.valueOf(ch).toUpperCase());
+            final int id_ = myButton.getId();
+
+            LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayoutLetters);
+            layout.addView(myButton);
+
+
+        }
     }
 
     @Override
