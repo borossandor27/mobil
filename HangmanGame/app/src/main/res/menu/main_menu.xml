@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menuItemSetup"
+        android:icon="@drawable/ic_baseline_manage_accounts_24"
+        android:title="Setup"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menuItemLevel"
+        android:title="Level">
+        <menu>
+            <item
+                android:id="@+id/menuItemHard"
+                android:title="Hard" />
+            <item
+                android:id="@+id/menuItemEasy"
+                android:title="Easy" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/menuItemCategory"
+        android:title="Category">
+        <menu>
+            <item
+                android:id="@+id/menuItemBiology"
+                android:title="Biology" />
+            <item
+                android:id="@+id/menuItemMathematics"
+                android:title="Mathematics" />
+            <item
+                android:id="@+id/menuItemIt"
+                android:title="It" />
+            <item
+                android:id="@+id/menuItemBuildings"
+                android:title="Buildings" />
+
+        </menu>
+    </item>
+    <item android:id="@+id/menuItemLanguagae"
+        android:title="Language">
+        <menu>
+            <item android:id="@+id/menuLanguageEnglish"
+                android:title="English"/>
+            <item android:id="@+id/menuLanguageRusszkij"
+                android:title="Русский"/>
+            <item android:id="@+id/menuLanguageMagyar"
+                android:title="Magyar"/>
+
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menuExit"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="Kilépés" />
+
+</menu>

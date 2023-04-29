@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PeopleRestClient</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="age">Age</string>
+    <string name="submit">Submit</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="example_person">Valaki (35)</string>
+</resources>
