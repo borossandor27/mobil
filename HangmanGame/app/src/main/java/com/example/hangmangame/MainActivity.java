@@ -2,7 +2,10 @@ package com.example.hangmangame;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.helper.widget.Flow;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,39 +15,70 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class MainActivity extends AppCompatActivity {
 
-    char[] alphabet_en = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-    char[] alphabet_hu = "aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz".toCharArray();
+    char[] alphabet_en, alphabet_hu;
     char[] alphabet_ru = {'\u0410', '\u0411', '\u0412', '\u0413', '\u0414', '\u0415', '\u0401', '\u0416', '\u0417', '\u0418', '\u0419', '\u041A', '\u041B', '\u041C', '\u041D', '\u041E', '\u041F', '\u0420', '\u0421', '\u0422', '\u0423', '\u0424', '\u0425', '\u0426', '\u0427', '\u0428', '\u0429', '\u042A', '\u042B', '\u042C', '\u042D', '\u042E', '\u042F'};
+
     //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
     public final int MAX_ERRORS = 11; //-- 11 kép van
+    public  String gameLanguage;
+    ConstraintLayout layoutLetters;
+    Flow lettersFlow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        init();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
-        addLetterButtons(alphabet_hu);
+        switch (gameLanguage) {
+            case "en":
+                addLetterButtons(alphabet_en);
+                break;
+            case "ru":
+                addLetterButtons(alphabet_ru);
+                break;
+            default:
+                addLetterButtons((alphabet_hu));
+        }
         return true;
     }
 
     private void addLetterButtons(char[] letters) {
-        for (char ch : letters) {
-            Button myButton = new Button(this);
-            myButton.setText(String.valueOf(ch).toUpperCase());
-            final int id_ = myButton.getId();
+        layoutLetters.removeAllViews();
+        int[] referenseIds = new int[letters.length];
+        for (int i = 0; i < letters.length; i++) {
+            MaterialButton myButton = new MaterialButton(this);
+            myButton.setText(String.valueOf(letters[i]).toUpperCase());
+            myButton.setPadding(5,10,5,5);
+            //final int id_ = myButton.getId()
+            final int id_ = i;
+            referenseIds[i] = id_;
+            myButton.setId(id_);
+            myButton.setTag(id_);
+            myButton.setText(String.valueOf(id_));
+            //String ref = Arrays.stream(referenseIds).mapToObj(String::valueOf).collect(Collectors.joining(","));
 
-            LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayoutLetters);
-            layout.addView(myButton);
-
-
+            myButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // TODO: 2023. 04. 30. Tippelte ezt a karaktert -> style="@style/Widget.MaterialComponents.Button.TextButton"
+                }
+            });
+            layoutLetters.addView(myButton);
         }
+        lettersFlow.setReferencedIds(referenseIds);
     }
 
     @Override
@@ -88,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    char[] charsForScript(Character.UnicodeScript script) {
-        StringBuilder sb = new StringBuilder();
-        for (int cp = 0; cp < Character.MAX_VALUE; ++cp) {
-            if (Character.isValidCodePoint(cp) && script == Character.UnicodeScript.of(cp)) {
-                sb.appendCodePoint(cp);
-            }
-        }
-        return sb.toString().toCharArray();
+    private void init() {
+        alphabet_en = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        alphabet_hu = "aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz".toCharArray();
+        //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
+
+        layoutLetters = (ConstraintLayout) findViewById(R.id.layoutLetters);
+        lettersFlow = (Flow) findViewById(R.id.lettersFlow);
+        gameLanguage="hu";
     }
 }
