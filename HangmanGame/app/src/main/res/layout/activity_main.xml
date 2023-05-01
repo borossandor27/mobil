@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <!--
+            video: https://www.youtube.com/watch?v=tZVjF8zVGx0
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btA"
                 android:layout_width="wrap_content"

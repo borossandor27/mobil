@@ -1,5 +1,8 @@
 package com.example.hangmangame;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.helper.widget.Flow;
@@ -11,13 +14,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,9 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
     //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
     public final int MAX_ERRORS = 11; //-- 11 kép van
-    public  String gameLanguage;
+    public String gameLanguage;
     ConstraintLayout layoutLetters;
     Flow lettersFlow;
+    List<Button> letterbtns;
+    String thoughtWord, subjectArea;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +65,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addLetterButtons(char[] letters) {
-        layoutLetters.removeAllViews();
+        //layoutLetters.removeAllViews();
         int[] referenseIds = new int[letters.length];
         for (int i = 0; i < letters.length; i++) {
             MaterialButton myButton = new MaterialButton(this);
             myButton.setText(String.valueOf(letters[i]).toUpperCase());
-            myButton.setPadding(5,10,5,5);
-            //final int id_ = myButton.getId()
-            final int id_ = i;
+            myButton.setTextSize(10);
+            myButton.setLayoutParams(new ConstraintLayout.LayoutParams(50, WRAP_CONTENT));
+            myButton.setPadding(0, 0, 0, 0);
+            myButton.setId(View.generateViewId());
+            final int id_ = myButton.getId();
             referenseIds[i] = id_;
-            myButton.setId(id_);
-            myButton.setTag(id_);
-            myButton.setText(String.valueOf(id_));
+            myButton.setTag(String.valueOf(letters[i]).toUpperCase());
             //String ref = Arrays.stream(referenseIds).mapToObj(String::valueOf).collect(Collectors.joining(","));
 
             myButton.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +137,35 @@ public class MainActivity extends AppCompatActivity {
         //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
 
         layoutLetters = (ConstraintLayout) findViewById(R.id.layoutLetters);
-        lettersFlow = (Flow) findViewById(R.id.lettersFlow);
-        gameLanguage="hu";
+        lettersFlow = new Flow(this);
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
+        params.orientation = params.horizontalChainStyle;
+
+        lettersFlow.setLayoutParams(params);
+        gameLanguage = "hu";
+        subjectArea="It";
+    }
+
+    public void getAllButtons(ViewGroup layout) {
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            View v = layout.getChildAt(i);
+            if (v instanceof Button) {
+                letterbtns.add((Button) v);
+            }
+        }
+    }
+    private void emptyPlaceOfExecution(){
+        // TODO: 2023. 05. 01. Kivégzőhely előkészítése új játék indításakor
+        thoughtWord =makeUpWord();
+    }
+    private String makeUpWord(){
+        // TODO: 2023. 05. 01. Kitatál egy szót az adott témakörben
+        String word="mikroprocesszor";
+        return word;
+    }
+    private void guessing(String tipChar){
+        // TODO: 2023. 05. 01. A gondolt szó tartalmazza az adott karaktert?
+        // TODO: 2023. 05. 01. A megfejtés teljes?
+
     }
 }
