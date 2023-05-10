@@ -71,13 +71,14 @@ public class MainActivity extends AppCompatActivity {
             MaterialButton myButton = new MaterialButton(this);
             myButton.setText(String.valueOf(letters[i]).toUpperCase());
             myButton.setTextSize(10);
+
             myButton.setLayoutParams(new ConstraintLayout.LayoutParams(50, WRAP_CONTENT));
-            myButton.setPadding(0, 0, 0, 0);
+            myButton.setPadding(3, 1, 3, 1);
+
             myButton.setId(View.generateViewId());
             final int id_ = myButton.getId();
             referenseIds[i] = id_;
             myButton.setTag(String.valueOf(letters[i]).toUpperCase());
-            //String ref = Arrays.stream(referenseIds).mapToObj(String::valueOf).collect(Collectors.joining(","));
 
             myButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -137,11 +138,7 @@ public class MainActivity extends AppCompatActivity {
         //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
 
         layoutLetters = (ConstraintLayout) findViewById(R.id.layoutLetters);
-        lettersFlow = new Flow(this);
-        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
-        params.orientation = params.horizontalChainStyle;
-
-        lettersFlow.setLayoutParams(params);
+        lettersFlow = (Flow) findViewById(R.id.lettersFlow);
         gameLanguage = "hu";
         subjectArea="It";
     }
