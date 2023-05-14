@@ -1,0 +1,134 @@
+<resources>
+    <string name="app_name">BeosztasApp</string>
+    <string name="content_description">image</string>
+    <string name="title_login">Bejelentkezés</string>
+    <string name="et_hint_email_id">Email</string>
+    <string name="et_hint_password">Új jelszó</string>
+    <string name="lbl_forgot_password">Elfelejtetted a jelszavad?</string>
+    <string name="btn_lbl_login">Bejelentkezés</string>
+    <string name="don_t_have_an_account">Még nincs fiókod?</string>
+    <string name="register"><u>Regisztráció</u></string>
+
+    <string name="create_an_account">Fiók létrehozása</string>
+
+    <string name="hint_last_name">Vezetéknév</string>
+    <string name="hint_first_name">Keresztnév</string>
+    <string name="et_hint_confirm_password">Új jelszó megerősítése</string>
+
+    <string name="i_agree_to_the_terms_and_conditions">Elfogadom a <u>Felhasználási feltételeket</u></string>
+    <string name="btn_lbl_register">Regisztráció</string>
+
+    <string name="already_have_an_account">Van már fiókod?</string>
+    <string name="edit_account">Adatok módosítása</string>
+    <string name="login"><u>Bejelentkezés</u></string>
+    <string name="szabi">Éves szabadság mennyisége</string>
+    <string name="ado">Adóazonosító</string>
+    <string name="fonok">Főnök neve</string>
+    <string name="munkarend">Munkarend</string>
+    <string name="munkaido">Heti munkaidő</string>
+    <string name="material_calendar_monday">H</string>
+    <string name="material_calendar_tuesday">K</string>
+    <string name="material_calendar_wednesday">SZ</string>
+    <string name="material_calendar_thursday">CS</string>
+    <string name="material_calendar_friday">P</string>
+    <string name="material_calendar_saturday">Sz</string>
+    <string name="material_calendar_sunday">V</string>
+    <string name="et_hint_picked_date">A választott dátum</string>
+    <string name="Mentes">Mentés</string>
+    <string name="beosztas_kezelo">Beosztásom</string>
+    <string name="udvozlet">Üdvözlünk a honlapon, %1$s! </string>
+    <array name="material_calendar_months_array">
+        <item>Január</item>
+        <item>Február</item>
+        <item>Március</item>
+        <item>Április</item>
+        <item>Május</item>
+        <item>Június</item>
+        <item>Július</item>
+        <item>Augusztus</item>
+        <item>Szeptember</item>
+        <item>Október</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
+    <string name="title_activity_home">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_home_alk">HomeAlkActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="action_share">Share</string>
+    <string name="action_exit">Exit</string>
+    <string name="beosztas">Beosztásom</string>
+    <string name="szemelyes">Személyes adatok változtatása</string>
+    <string name="ertesites">Értesítéseim</string>
+    <string name="szabadsag">Korábbi szabadságaim</string>
+    <string name="et_hint_szabmennyiseg">Szabadság mennyisége</string>
+    <string name="title_valasztott_date">Választott dátum</string>
+    <string name="title_szabmenny">Szabadság mennyisége:</string>
+    <string name="title_NaN">NaN</string>
+    <string name="btn_save">Mentés</string>
+    <string name="et_hint_eves">Éves szabadság mennyisége</string>
+    <string name="et_hint_heti">Heti munka óraszám</string>
+    <string name="hint_ado">"Adóazonosító "</string>
+    <string name="et_hint_munkar">Munkarend azonosító</string>
+    <string name="kijelent">Kijelentkezés</string>
+    <string name="reisztracio">Új munkavállaló regisztrációja</string>
+    <string name="beosztott">Beosztottaim</string>
+    <string name="udv_alk">Kövesse és módosítsa  bármikor munkabeosztását!</string>
+    <string name="udv_fon">Kövesse beosztottja munkarendjét percek alatt!</string>
+    <string name="err_msg_enter_email">Az e-mail cím nem lehet üres!</string>
+    <string name="err_msg_enter_password">Új jelszó nem lehet üres!</string>
+    <string name="err_msg_enter_confirm_password">Új jelszó megerősítése nem lehet üres!</string>
+    <string name="err_msg_password_and_confirm_password_mismatch">Az új jelszó és megerősítése nem egyezik!!</string>
+    <string name="edit_succesfull">A jelszó sikeresen módosítva!</string>
+    <string name="register_succesfull">Új munkavállaló hozzáadva!!</string>
+    <string name="err_msg_old_password_mismatch">Régi jelszó nem egyezik!</string>
+    <string name="err_password_or_email_mismatch">A jelszó vagy az email nem egyezik!</string>
+    <string name="err_msg_enter_ado">Adószám nem lehet üres!</string>
+    <string name="err_msg_enter_name">A név nem lehet üres!</string>
+    <string name="err_msg_enter_ado_hibahossz">Az adószám nyolc számjegyű</string>
+    <string name="err_msg_enter_munkareID">A munkarend csak 0 vagy 1 lehet!</string>
+    <string name="err_msg_enter_munk">MunkarendID nem lehet üres!</string>
+    <string name="err_msg_enter_eves">Éves szabadságok száma nem lehet üres!</string>
+    <string name="err_msg_enter_hetimunk">Heti munkaidő nem lehet üres!</string>
+    <string name="err_msg_eves_szab">Éves szaadságok száma nem lehet negatív!</string>
+    <string name="err_msg_hetimunkhossz">Heti munkaidő nem lehet negatív!</string>
+    <string name="err_msg_enter_belepes">A belépés ideje nem lehet üres!</string>
+    <string name="hint_name">Név</string>
+    <string name="add_an_account">Új munkavállaló hozzáadása</string>
+    <string name="err_msg_enter_ado_hiba">Az adószám nem lehet negatív</string>
+    <string name="belepes">Belépés ideje</string>
+    <string name="et_hint_oldpassword">Régi jelszó</string>
+    <string name="hint_email">email</string>
+    <string name="hint_password">jelszó</string>
+    <string name="text_accounts">Beosztottak</string>
+    <string name="text_hello">Hello</string>
+    <string name="text_title">Beosztottaim</string>
+    <string name="hint_belepes">belépés</string>
+    <string name="btn_delete">Törlés</string>
+    <string name="btn_elutasit">Elutasít</string>
+    <string name="btn_elfogad">Elfogadás</string>
+    <string name="hint_datum">Dátum</string>
+    <string name="hint_tipus">Típus</string>
+    <string name="err_msg_already_entered">Ezzel az e-mail címmel már létezik munkavállaló!</string>
+    <string name="hint_allapot">Állapot</string>
+    <string name="btn_lbl_add">Munkarend hozzáadása</string>
+    <string name="add_an_munkarend">Munkarend hozzáadása</string>
+    <string name="hint_kezdes">Kezdés időpontja</string>
+    <string name="et_hint_befejezes">Befejezés időpontja</string>
+    <string name="add_ertesitesek">Értesítések</string>
+    <string name="add_szabi">Elfogadott szabadságok</string>
+    <string name="alkalmazott">Alkalmazottak listája</string>
+    <string name="err_msg_enter_fullname">Legalább egy kereszt és utónév megadása!</string>
+
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/cat"
+            android:title="Macskák"
+            android:icon="@drawable/ic_caticon"/>
+        <item android:id="@+id/dog"
+            android:title="Kutyák"
+            android:icon="@drawable/ic_dog"/>
+            <item android:id="@+id/kedvencek"
+                android:title="Jelentkezéseim"
+                android:icon="@drawable/ic_calendar_"/>
+    </group>
+
+    <item android:title="Önkéntesség">
+        <menu>
+            <item android:id="@+id/esemenyek"
+                android:title="Rendezvények"
+                android:icon="@drawable/ic_esemenyek"/>
+            <item android:id="@+id/programok"
+                android:title="Programok"
+                android:icon="@drawable/ic_programok"/>
+        </menu>
+    </item>
+
+
+    <item android:title="Alapítványról">
+        <menu>
+            <item android:id="@+id/rolunk"
+                android:title="Rólunk"
+                android:icon="@drawable/ic_rolunk"/>
+
+        </menu>
+    </item>
+
+
+
+</menu>

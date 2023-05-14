@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ElethangApplication</string>
+    <string name="open">Nyitva</string>
+    <string name="close">Zarva</string>
+    <string name="rolunkSzoveg">\tAlapítványunk minden bevételét a rászoruló állatok élelmezési, elhelyezési és állatorvosi költségeire fordítjuk, tagjaink nem kapnak fizetést, vagy bármiféle anyagi juttatást munkájukért.\n\n
+
+\tGyálon és környékén működő állatmentő csapatunkat 2011 augusztusában hozta létre egy maroknyi lelkes helyi állatvédő <i>"Gyáli gazdikeresők”</i> néven. Csapatunk önerőből, saját szabadidejéből és szinte anyagi támogatás nélkül segítette a környékbeli elhagyott állatokat.
+<i>"Gyáli gazdikeresőket”</i> 2012 decemberében sikerült hivatalos formába öntenünk, így tevékenységünket <b>ÉLETHANG Természetvédő és Állatmentő Alapítvány</b> néven folytatjuk tovább.\n\n
+
+\tAlapítványunk célja a gyáli és Gyál környéki állatok életminőségének javítása, a nem kívánt szaporulatok visszaszorítása, a gyepmesteri telepen élő kutyák mentése, a gondozásunkba került állatok megfelelő elhelyezése, orvosi ellátása és gazdihoz juttatása.
+Nem célunk az állatok felelőtlen halmozása, a <i>„mennyiségi típusú”</i> állatmentés. Menhelyünk nincs, a hozzánk került állatokat az alapítványi tagoknál (saját lakásainkban), ismerőseinknél, ideiglenes befogadóknál és panziókban helyezzük el.\n\n
+
+\tAnyagi és egyéb lehetőségeink korlátozottak. Felelősen csak akkor tudunk a magunkhoz venni kutyát vagy cicát, ha felszabadul egy vagy több helyünk és az adott állat számára tudjuk biztosítani az elegendő élelmet és a megfelelő orvosi ellátást. A gondozásunkban lévő kutyák és cicák létszámát minden esetben az alapítvány anyagi kereteihez fogjuk a jövőben is igazítani.\n\n
+\t\t<b>Számlaszámunk:</b> OTP Bank Nyrt. 11705008-29915941 Élethang Alapítvány\n
+</string>
+    <string name="koszonom">
+        <b>Támogatásodat köszönjük!</b>
+    </string>
+
+    <string name="homeUdvozles"> ÉLETHANG\n Természetvédő és Állatmentő Alapítvány </string>
+</resources>

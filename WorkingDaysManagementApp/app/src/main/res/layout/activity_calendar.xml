@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.CalendarActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_calendar_activity"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/my_toolbar_size"
+        android:background="@drawable/button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.example.beosztasapp.utils.MSPTextViewBold
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingStart="@dimen/toolbar_title_paddingStart"
+            android:paddingEnd="0dp"
+            android:text="@string/beosztas_kezelo"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/toolbar_title_text_size" />
+
+    </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_calendar_activity">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.example.beosztasapp.utils.MSPTextViewBold
+                android:id="@+id/tv_pickedText"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_valasztott_date"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/title_textSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.beosztasapp.utils.MSPTextViewBold
+                android:id="@+id/tv_pickedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_NaN"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/title_textSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_pickedText" />
+
+            <com.example.beosztasapp.utils.MSPTextViewBold
+                android:id="@+id/tv_szabmennyText"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_szabmenny"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/title_textSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_pickedDate" />
+            <com.example.beosztasapp.utils.MSPTextViewBold
+                android:id="@+id/tv_szabmennyiseg"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_szabmenny"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/title_textSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_szabmennyText" />
+
+    <com.applandeo.materialcalendarview.CalendarView
+
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:eventsEnabled="true"
+        app:headerColor="@color/calendar_light"
+        app:headerLabelColor="@color/calendar_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_szabmennyiseg"
+        app:type="one_day_picker" >
+
+    </com.applandeo.materialcalendarview.CalendarView>
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calendarView" />
+
+        <com.example.beosztasapp.utils.MSPButton
+            android:id="@+id/btn_calendar_save"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:paddingTop="@dimen/btn_padding"
+            android:paddingBottom="@dimen/btn_padding"
+            android:text="@string/Mentes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btn_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner1"
+            app:layout_constraintBottom_toBottomOf ="parent"
+            />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

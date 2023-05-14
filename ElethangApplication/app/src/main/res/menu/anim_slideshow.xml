@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="dd"
+        android:duration="2000"
+        android:drawable="@mipmap/biborka"/>
+
+    <item
+        android:title="dd"
+        android:duration="2000"
+        android:drawable="@mipmap/joker"/>
+
+    <item
+        android:title="dd"
+        android:duration="2000"
+        android:drawable="@mipmap/jura"/>
+
+    <item
+        android:title="dd"
+        android:duration="2000"
+        android:drawable="@mipmap/kuglof"/>
+
+    <item
+        android:title="dd"
+        android:duration="2000"
+        android:drawable="@mipmap/lexi"/>
+
+    <item
+        android:title="dd"
+        android:duration="2000"
+        android:drawable="@mipmap/tade"/>
+
+
+</animation-list>
