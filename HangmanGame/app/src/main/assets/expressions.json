@@ -1,0 +1,92 @@
+[
+   {
+      "language":"orosz",
+      "category":"épület",
+      "level":"easy",
+      "expressionInHungarian":"Lenin-mauzóleum",
+      "expression":"Мавзолей Ленина",
+      "descriptionInHungarian":"Vlagyimir Iljics Lenin nyughelye, mely Moszkvában található, a Vörös téren.",
+      "descriptionInTargetLanguage":"Место упокоения Владимира Ильича Ленина, расположенное в Москве, на Красной площади.",
+      "picture":"mauzoleumlenina.jpeg"
+   },
+   {
+      "language":"orosz",
+      "category":"épület",
+      "level":"easy",
+      "expressionInHungarian":"Kreml",
+      "expression":"Кремль",
+      "descriptionInHungarian":"a várossal azonos nevű folyó partja fölé, a Borovickij dombra épült, és mára a világörökség része",
+      "descriptionInTargetLanguage":"Он был построен над берегом одноименной с городом реки, на Боровицком холме, и сейчас является частью всемирного наследия.",
+      "picture":"kreml-moszkva"
+   },
+   {
+      "language":"orosz",
+      "category":"épület",
+      "level":"easy",
+      "expressionInHungarian":"Boldog Vazul-székesegyház",
+      "expression":"Блаженный Вазульский собор",
+      "descriptionInHungarian":"Moszkva egyik legjelentősebb és legismertebb építészeti emléke, gyakran használt jelképe. A híres Vörös téren áll. Rettegett Iván cár építtette 1555 és 1561 között.",
+      "descriptionInTargetLanguage":"Это один из самых значимых и известных архитектурных памятников Москвы, часто используемый символ. Он стоит на знаменитой Красной площади. Он был построен царем Иваном Грозным между 1555 и 1561 годами.",
+      "picture":"Храм_Василия_Блаженногo.jpg"
+   },
+   {
+      "language":"orosz",
+      "category":"biológia",
+      "level":"easy",
+      "expressionInHungarian":"macska",
+      "expression":"кот",
+      "descriptionInHungarian":"Kisebb termetű húsevő emlős, amely a ragadozók rendjén belül a macskafélék családjának Felis neméhez és vadmacska fajához tartozik. ",
+      "descriptionInTargetLanguage":"Это небольшое хищное млекопитающее, принадлежащее к роду Felis и виду диких кошек в отряде хищников.",
+      "picture":"macska.jpg"
+   },
+   {
+      "language":"orosz",
+      "category":"biológia",
+      "level":"easy",
+      "expressionInHungarian":"kutya",
+      "expression":"собака",
+      "descriptionInHungarian":"Emlős ragadozó állat, a szürke farkas (Canis lupus) egy már kihalt alfajának háziasított formája",
+      "descriptionInTargetLanguage":"одомашненная форма вымершего подвида серого волка (Canis lupus), хищного млекопитающего.",
+      "picture":"Shiba-Inu.jpg"
+   },
+   {
+      "language":"angol",
+      "category":"épület",
+      "level":"easy",
+      "expressionInHungarian":"Londoni Tower",
+      "expression":"Tower of London",
+      "descriptionInHungarian":"Több erődített részből álló középkori épületegyüttes London belvárosában a Temze partján, amely az idők során erődítmény, fegyverraktár, királyi palota és főrendű foglyoknak szánt börtön",
+      "descriptionInTargetLanguage":"A medieval complex consisting of several fortified parts in the center of London on the banks of the Thames, which over time has been a fortress, armory, royal palace and prison for high-ranking prisoners",
+      "picture":"Tower-Of-London.jpg"
+   },
+   {
+      "language":"angol",
+      "category":"épület",
+      "level":"easy",
+      "expressionInHungarian":"Buckingham-palota",
+      "expression":"Buckingham Palace",
+      "descriptionInHungarian":"A brit uralkodó egyik rezidenciája, lakhelye. A palota London belvárosában, Westminster városrészben található.",
+      "descriptionInTargetLanguage":"One of the residences and residences of the British monarch. The palace is located in the center of London, in the Westminster district.",
+      "picture":"Buckingham-palota.jpg"
+   },
+   {
+      "language":"angol",
+      "category":"épület",
+      "level":"easy",
+      "expressionInHungarian":"Tower-híd ",
+      "expression":"Tower Bridge",
+      "descriptionInHungarian":"Közúti híd a Temze fölött, London északi és déli felét köti össze.",
+      "descriptionInTargetLanguage":"Road bridge over the Thames connecting the north and south of London.",
+      "picture":"tower-bridge-3.jpg"
+   },
+   {
+      "language":"angol",
+      "category":"épület",
+      "level":"easy",
+      "expressionInHungarian":"Westminster-palota",
+      "expression":"Palace of Westminster",
+      "descriptionInHungarian":"a londoni parlament alsó- és felsőházának épülete",
+      "descriptionInTargetLanguage":"The building of the House of Commons and Upper House of the London Parliament",
+      "picture":"westminster-347971_640.jpg"
+   }
+]

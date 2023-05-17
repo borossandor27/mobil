@@ -1,22 +1,29 @@
 package com.example.hangmangame;
 
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.helper.widget.Flow;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
@@ -30,10 +37,12 @@ public class GameActivity extends AppCompatActivity {
     ConstraintLayout layoutLetters;
     Flow lettersFlow;
     List<Button> letterbtns;
-    String thoughtWord, subjectArea;
-
+    String thoughtWord, subjectArea,resultGuesswork;
+    ImageView imageGallows;
+TextView textViewTip;
     /**
      * Játék aktivitás létrehozása
+     *
      * @param savedInstanceState
      */
     @Override
@@ -45,6 +54,7 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * A menu hozzáadása a felülethez
+     *
      * @param menu
      * @return
      */
@@ -65,9 +75,17 @@ public class GameActivity extends AppCompatActivity {
         return true;
     }
 
+    public int convertToPx(int dp) {
+        // Get the screen's density scale
+        final float scale = getResources().getDisplayMetrics().density;
+        // Convert the dps to pixels, based on density scale
+        return (int) (dp * scale + 0.5f);
+    }
+
     /**
      * A választott nyelv ABC betűinek megfelelő parancsgombok elhelyezése
      * a játéktéren
+     *
      * @param letters char[] - az ABC betűi
      */
     private void addLetterButtons(char[] letters) {
@@ -75,19 +93,14 @@ public class GameActivity extends AppCompatActivity {
         int[] referenseIds = new int[letters.length];
         for (int i = 0; i < letters.length; i++) {
             MaterialButton myButton = new MaterialButton(this);
-            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
-                    10,100
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
+                    150,
+                    150
             );
-            params.setMargins(5, 5, 5, 5);
-
             myButton.setLayoutParams(params);
             myButton.setText(String.valueOf(letters[i]).toUpperCase());
             myButton.setTag(String.valueOf(letters[i]).toUpperCase());
-            //myButton.setTextSize(15);
-
-            //myButton.setPadding(30, 1, 30, 1);
-            //myButton.setWidth(250);
-
+            myButton.setTextSize(15);
             myButton.setId(View.generateViewId());
             final int id_ = myButton.getId();
             referenseIds[i] = id_;
@@ -97,9 +110,11 @@ public class GameActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     // TODO: 2023. 04. 30. Tippelte ezt a karaktert -> style="@style/Widget.MaterialComponents.Button.TextButton"
                     myButton.setEnabled(false);
-    //                myButton.setTextAppearance(com.google.android.material.R.style.Widget_MaterialComponents_Button_TextButton);
-                    // TODO: 2023. 05. 15. Találat ellenőrzése 
+                    //                myButton.setTextAppearance(com.google.android.material.R.style.Widget_MaterialComponents_Button_TextButton);
+                    // TODO: 2023. 05. 15. Találat ellenőrzése
+                    guesswork(String.valueOf(letters[id_]));
                     // TODO: 2023. 05. 15. Kijelző frissítése
+                    placeOfExecution();
                     Toast.makeText(GameActivity.this,
                             "Button clicked index = " + id_, Toast.LENGTH_SHORT).show();
                 }
@@ -111,6 +126,7 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Menüválasztások feldolgozása
+     *
      * @param item
      * @return
      */
@@ -163,6 +179,8 @@ public class GameActivity extends AppCompatActivity {
 
         layoutLetters = (ConstraintLayout) findViewById(R.id.layoutLetters);
         lettersFlow = (Flow) findViewById(R.id.lettersFlow);
+        imageGallows=(ImageView) findViewById(R.id.imageGallows);
+        textViewTip=(TextView)findViewById(R.id.textViewTip);
         gameLanguage = "hu";
         subjectArea = "It";
     }
@@ -180,24 +198,66 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Kivégzőhely előkészítése új játék indításakor
      */
-    private void emptyPlaceOfExecution() {
-        // TODO: 2023. 05. 01.
-        thoughtWord = makeUpWord();
+    private void placeOfExecution() {
+        //-- találati szintnek megfelelő kép megjelenítése
+        imageGallows.setBackgroundResource(R.drawable.placeofexecution0);
+        //-- találati szintnek megfelelő szöveg megjelenítése
     }
 
     /**
      * Kitatál egy szót az adott témakörben
+     *
      * @return kitalált szó
      */
-    private String makeUpWord() {
+    private void makeUpWord() {
         // TODO: 2023. 05. 01.
-        String word = "mikroprocesszor";
-        return word;
+        thoughtWord = "mikroprocesszor";
     }
 
     private void guesswork(String tipChar) {
         // TODO: 2023. 05. 01. A gondolt szó tartalmazza az adott karaktert?
+if (thoughtWord.contains(tipChar)){
+
+}
         // TODO: 2023. 05. 01. A megfejtés teljes?
 
+    }
+
+private void startGame(){
+    makeUpWord();
+
+}
+    private void loadJson() {
+        try {
+            //-- fájl beolvasása szövegként ------
+            InputStream inputStream = getAssets().open("expressions.json");
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+            //-- JSON elemek átmeneti tárolásához a változók -----------
+            String language, category, level, expressionInHungarian, expression, descriptionInHungarian, descriptionInTargetLanguage, picture;
+            //--  fetch json file ----------
+            String json;
+            int count;
+            json = new String(buffer, StandardCharsets.UTF_8);
+            JSONArray jsonArray = new JSONArray(json);
+            count = jsonArray.length();
+            for (int i = 0; i < count; i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                language = jsonObject.getString("language");
+                category = jsonObject.getString("category");
+                level = jsonObject.getString("level");
+                expressionInHungarian = jsonObject.getString("expressionInHungarian");
+                expression = jsonObject.getString("expression");
+                descriptionInHungarian = jsonObject.getString("descriptionInHungarian");
+                descriptionInTargetLanguage = jsonObject.getString("descriptionInTargetLanguage");
+                picture = jsonObject.getString("picture");
+
+            }
+
+        } catch (Exception e) {
+            Log.e("TAG", "loadJson: error " + e);
+        }
     }
 }
