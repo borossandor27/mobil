@@ -216,9 +216,8 @@ TextView textViewTip;
 
     private void guesswork(String tipChar) {
         // TODO: 2023. 05. 01. A gondolt szó tartalmazza az adott karaktert?
-if (thoughtWord.contains(tipChar)){
+// thoughtWord.contains(tipChar))
 
-}
         // TODO: 2023. 05. 01. A megfejtés teljes?
 
     }
