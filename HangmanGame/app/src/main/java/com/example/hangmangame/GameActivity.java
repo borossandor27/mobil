@@ -37,9 +37,10 @@ public class GameActivity extends AppCompatActivity {
     ConstraintLayout layoutLetters;
     Flow lettersFlow;
     List<Button> letterbtns;
-    String thoughtWord, subjectArea,resultGuesswork;
+    String thoughtWord, subjectArea, resultGuesswork;
     ImageView imageGallows;
-TextView textViewTip;
+    TextView textViewTip;
+
     /**
      * Játék aktivitás létrehozása
      *
@@ -48,8 +49,12 @@ TextView textViewTip;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
         init();
+        loadExpressions();
+    }
+
+    private void loadExpressions() {
     }
 
     /**
@@ -89,7 +94,7 @@ TextView textViewTip;
      * @param letters char[] - az ABC betűi
      */
     private void addLetterButtons(char[] letters) {
-        //layoutLetters.removeAllViews();
+        removeAllButtons(layoutLetters);
         int[] referenseIds = new int[letters.length];
         for (int i = 0; i < letters.length; i++) {
             MaterialButton myButton = new MaterialButton(this);
@@ -152,13 +157,15 @@ TextView textViewTip;
                 Toast.makeText(this, "Informatikát válsztott", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menuLanguageEnglish:
-                removeAllButtons(layoutLetters);
+                addLetterButtons(alphabet_en);
                 Toast.makeText(this, "Angol nyelvet válsztott", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menuLanguageMagyar:
+                addLetterButtons(alphabet_hu);
                 Toast.makeText(this, "Magyar nyelvet válsztott", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menuLanguageRusszkij:
+                addLetterButtons(alphabet_ru);
                 Toast.makeText(this, "Orosz nyelvet válsztott", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menuItemSetup:
@@ -179,8 +186,8 @@ TextView textViewTip;
 
         layoutLetters = (ConstraintLayout) findViewById(R.id.layoutLetters);
         lettersFlow = (Flow) findViewById(R.id.lettersFlow);
-        imageGallows=(ImageView) findViewById(R.id.imageGallows);
-        textViewTip=(TextView)findViewById(R.id.textViewTip);
+        imageGallows = (ImageView) findViewById(R.id.imageGallows);
+        textViewTip = (TextView) findViewById(R.id.textViewTip);
         gameLanguage = "hu";
         subjectArea = "It";
     }
@@ -188,9 +195,8 @@ TextView textViewTip;
     public void removeAllButtons(ConstraintLayout layoutLetters) {
         for (int i = 0; i < this.layoutLetters.getChildCount(); i++) {
             View v = this.layoutLetters.getChildAt(i);
-            if (v instanceof Button) {
-                this.layoutLetters.removeView((Button) v);
-                letterbtns.add((Button) v);
+            if (v instanceof MaterialButton) {
+                this.layoutLetters.removeView((MaterialButton) v);
             }
         }
     }
@@ -222,10 +228,11 @@ TextView textViewTip;
 
     }
 
-private void startGame(){
-    makeUpWord();
+    private void startGame() {
+        makeUpWord();
 
-}
+    }
+
     private void loadJson() {
         try {
             //-- fájl beolvasása szövegként ------

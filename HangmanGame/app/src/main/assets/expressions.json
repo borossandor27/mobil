@@ -1,6 +1,6 @@
 [
    {
-      "language":"orosz",
+      "language":"ru",
       "category":"épület",
       "level":"easy",
       "expressionInHungarian":"Lenin-mauzóleum",
@@ -10,7 +10,7 @@
       "picture":"mauzoleumlenina.jpeg"
    },
    {
-      "language":"orosz",
+      "language":"ru",
       "category":"épület",
       "level":"easy",
       "expressionInHungarian":"Kreml",
@@ -20,7 +20,7 @@
       "picture":"kreml-moszkva"
    },
    {
-      "language":"orosz",
+      "language":"ru",
       "category":"épület",
       "level":"easy",
       "expressionInHungarian":"Boldog Vazul-székesegyház",
@@ -30,7 +30,7 @@
       "picture":"Храм_Василия_Блаженногo.jpg"
    },
    {
-      "language":"orosz",
+      "language":"ru",
       "category":"biológia",
       "level":"easy",
       "expressionInHungarian":"macska",
@@ -40,7 +40,7 @@
       "picture":"macska.jpg"
    },
    {
-      "language":"orosz",
+      "language":"ru",
       "category":"biológia",
       "level":"easy",
       "expressionInHungarian":"kutya",
@@ -50,7 +50,7 @@
       "picture":"Shiba-Inu.jpg"
    },
    {
-      "language":"angol",
+      "language":"en",
       "category":"épület",
       "level":"easy",
       "expressionInHungarian":"Londoni Tower",
@@ -60,7 +60,7 @@
       "picture":"Tower-Of-London.jpg"
    },
    {
-      "language":"angol",
+      "language":"en",
       "category":"épület",
       "level":"easy",
       "expressionInHungarian":"Buckingham-palota",
@@ -70,7 +70,7 @@
       "picture":"Buckingham-palota.jpg"
    },
    {
-      "language":"angol",
+      "language":"en",
       "category":"épület",
       "level":"easy",
       "expressionInHungarian":"Tower-híd ",
@@ -80,7 +80,7 @@
       "picture":"tower-bridge-3.jpg"
    },
    {
-      "language":"angol",
+      "language":"en",
       "category":"épület",
       "level":"easy",
       "expressionInHungarian":"Westminster-palota",
