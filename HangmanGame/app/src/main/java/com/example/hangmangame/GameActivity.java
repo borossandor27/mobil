@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +25,12 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
 
-    char[] alphabet_en, alphabet_hu;
-    char[] alphabet_ru = {'\u0410', '\u0411', '\u0412', '\u0413', '\u0414', '\u0415', '\u0401', '\u0416', '\u0417', '\u0418', '\u0419', '\u041A', '\u041B', '\u041C', '\u041D', '\u041E', '\u041F', '\u0420', '\u0421', '\u0422', '\u0423', '\u0424', '\u0425', '\u0426', '\u0427', '\u0428', '\u0429', '\u042A', '\u042B', '\u042C', '\u042D', '\u042E', '\u042F'};
+    char[] alphabet_en, alphabet_hu,alphabet_ru;
 
     //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
     public final int MAX_ERRORS = 11; //-- 11 kép van
@@ -117,11 +118,11 @@ public class GameActivity extends AppCompatActivity {
                     myButton.setEnabled(false);
                     //                myButton.setTextAppearance(com.google.android.material.R.style.Widget_MaterialComponents_Button_TextButton);
                     // TODO: 2023. 05. 15. Találat ellenőrzése
-                    guesswork(String.valueOf(letters[id_]));
+                    guesswork((String) myButton.getText());
                     // TODO: 2023. 05. 15. Kijelző frissítése
                     placeOfExecution();
                     Toast.makeText(GameActivity.this,
-                            "Button clicked index = " + id_, Toast.LENGTH_SHORT).show();
+                            "Button clicked index = " + myButton.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
             layoutLetters.addView(myButton);
@@ -180,6 +181,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void init() {
+        char[] ruchars = {'\u0410', '\u0411', '\u0412', '\u0413', '\u0414', '\u0415', '\u0401', '\u0416', '\u0417', '\u0418', '\u0419', '\u041A', '\u041B', '\u041C', '\u041D', '\u041E', '\u041F', '\u0420', '\u0421', '\u0422', '\u0423', '\u0424', '\u0425', '\u0426', '\u0427', '\u0428', '\u0429', '\u042A', '\u042B', '\u042C', '\u042D', '\u042E', '\u042F'};
+alphabet_ru = (new String(ruchars)).toCharArray();
         alphabet_en = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         alphabet_hu = "aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz".toCharArray();
         //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);

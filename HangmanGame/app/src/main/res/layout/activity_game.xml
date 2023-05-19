@@ -89,8 +89,6 @@
                     app:layout_constraintTop_toTopOf="parent"/>
                 <!-- app:constraint_referenced_ids="btA,btB,btC,btD,btE,btF,btG,btH,btI,btJ" -->
 
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>
