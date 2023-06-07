@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -99,14 +100,16 @@ public class GameActivity extends AppCompatActivity {
         int[] referenseIds = new int[letters.length];
         for (int i = 0; i < letters.length; i++) {
             MaterialButton myButton = new MaterialButton(this);
-            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
-                    150,
-                    150
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(100,
+                   100
             );
             myButton.setLayoutParams(params);
             myButton.setText(String.valueOf(letters[i]).toUpperCase());
             myButton.setTag(String.valueOf(letters[i]).toUpperCase());
+
             myButton.setTextSize(15);
+            //myButton.setWidth();
+            //int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, <HEIGHT>, getResources().getDisplayMetrics());
             myButton.setId(View.generateViewId());
             final int id_ = myButton.getId();
             referenseIds[i] = id_;
