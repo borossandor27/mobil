@@ -18,18 +18,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:adjustViewBounds="true"
-            android:maxHeight="200dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/executioner" />
+            android:maxHeight="260dp"
+            android:scaleType="center"
+            android:src="@drawable/akasztofa00"/>
 
         <TextView
             android:id="@+id/textViewTip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="25dp"
-            android:paddingBottom="20dp"
+            android:letterSpacing="0.2"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="H_ll_ W_rld!"
+            android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +88,7 @@
                     app:flow_horizontalGap="3dp"
                     app:flow_wrapMode="chain"
                     app:layout_constraintStart_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
                 <!-- app:constraint_referenced_ids="btA,btB,btC,btD,btE,btF,btG,btH,btI,btJ" -->
 
             </androidx.constraintlayout.widget.ConstraintLayout>

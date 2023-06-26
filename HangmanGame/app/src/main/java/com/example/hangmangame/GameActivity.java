@@ -7,7 +7,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,20 +24,18 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
 
-    char[] alphabet_en, alphabet_hu,alphabet_ru;
+    char[] alphabet_en, alphabet_hu, alphabet_ru;
 
-    //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
-    public final int MAX_ERRORS = 11; //-- 11 kép van
-    public String gameLanguage;
+    final int MAX_ERRORS = 13; //-- 13 kép van
+    int badGuess = 0;
+    StringBuilder gameLanguage;
     ConstraintLayout layoutLetters;
     Flow lettersFlow;
-    List<Button> letterbtns;
-    String thoughtWord, subjectArea, resultGuesswork;
+    StringBuilder thoughtWord, subjectArea, resultGuesswork;
     ImageView imageGallows;
     TextView textViewTip;
 
@@ -54,6 +50,10 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         init();
         loadExpressions();
+        startGame();
+    }
+
+    private void endGame() {
     }
 
     private void loadExpressions() {
@@ -69,7 +69,7 @@ public class GameActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
-        switch (gameLanguage) {
+        switch (gameLanguage.toString()) {
             case "en":
                 addLetterButtons(alphabet_en);
                 break;
@@ -91,17 +91,17 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * A választott nyelv ABC betűinek megfelelő parancsgombok elhelyezése
-     * a játéktéren
+     * a játéktéren tippeléshez
      *
      * @param letters char[] - az ABC betűi
      */
     private void addLetterButtons(char[] letters) {
-        removeAllButtons(layoutLetters);
+        removeAllLetterButtons(layoutLetters);
         int[] referenseIds = new int[letters.length];
         for (int i = 0; i < letters.length; i++) {
             MaterialButton myButton = new MaterialButton(this);
-            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(100,
-                   100
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(convertToPx(45),
+                    convertToPx(45)
             );
             myButton.setLayoutParams(params);
             myButton.setText(String.valueOf(letters[i]).toUpperCase());
@@ -121,11 +121,10 @@ public class GameActivity extends AppCompatActivity {
                     myButton.setEnabled(false);
                     //                myButton.setTextAppearance(com.google.android.material.R.style.Widget_MaterialComponents_Button_TextButton);
                     // TODO: 2023. 05. 15. Találat ellenőrzése
-                    guesswork((String) myButton.getText());
+                    guessingProcessing((String) myButton.getText());
                     // TODO: 2023. 05. 15. Kijelző frissítése
                     placeOfExecution();
-                    Toast.makeText(GameActivity.this,
-                            "Button clicked index = " + myButton.getText(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(GameActivity.this,"Clicked = " + myButton.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
             layoutLetters.addView(myButton);
@@ -185,7 +184,8 @@ public class GameActivity extends AppCompatActivity {
 
     private void init() {
         char[] ruchars = {'\u0410', '\u0411', '\u0412', '\u0413', '\u0414', '\u0415', '\u0401', '\u0416', '\u0417', '\u0418', '\u0419', '\u041A', '\u041B', '\u041C', '\u041D', '\u041E', '\u041F', '\u0420', '\u0421', '\u0422', '\u0423', '\u0424', '\u0425', '\u0426', '\u0427', '\u0428', '\u0429', '\u042A', '\u042B', '\u042C', '\u042D', '\u042E', '\u042F'};
-alphabet_ru = (new String(ruchars)).toCharArray();
+        alphabet_ru = (new String(ruchars)).toCharArray();
+        //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
         alphabet_en = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         alphabet_hu = "aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz".toCharArray();
         //-- Ez miért nem??? char[] russianAlphabet = getAlphabet(LocaleLanguage.RUSSIAN);
@@ -194,11 +194,19 @@ alphabet_ru = (new String(ruchars)).toCharArray();
         lettersFlow = (Flow) findViewById(R.id.lettersFlow);
         imageGallows = (ImageView) findViewById(R.id.imageGallows);
         textViewTip = (TextView) findViewById(R.id.textViewTip);
-        gameLanguage = "hu";
-        subjectArea = "It";
+        gameLanguage = new StringBuilder("hu");
+        subjectArea = new StringBuilder("It");
+        badGuess = 0;
     }
 
-    public void removeAllButtons(ConstraintLayout layoutLetters) {
+    /**
+     * Lehetséges karaktereket (a cél nyelv ABC-je) szimbolizáló parancsgombok elhelyezése
+     * - játék indításakor
+     * - cél nyelv megváltoztatásakor
+     *
+     * @param layoutLetters
+     */
+    public void removeAllLetterButtons(ConstraintLayout layoutLetters) {
         for (int i = 0; i < this.layoutLetters.getChildCount(); i++) {
             View v = this.layoutLetters.getChildAt(i);
             if (v instanceof MaterialButton) {
@@ -208,12 +216,62 @@ alphabet_ru = (new String(ruchars)).toCharArray();
     }
 
     /**
-     * Kivégzőhely előkészítése új játék indításakor
+     * Kivégzőhely megjelenítése
+     * - új játék indításakor
+     * - tippelés után
      */
     private void placeOfExecution() {
         //-- találati szintnek megfelelő kép megjelenítése
-        imageGallows.setBackgroundResource(R.drawable.placeofexecution0);
+        switch (badGuess) {
+            case 0:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa00);
+                break;
+            case 1:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa01);
+                break;
+            case 2:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa02);
+                break;
+            case 3:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa03);
+                break;
+            case 4:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa04);
+                break;
+            case 5:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa05);
+                break;
+            case 6:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa06);
+                break;
+            case 7:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa07);
+                break;
+            case 8:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa08);
+                break;
+            case 9:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa09);
+                break;
+            case 10:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa10);
+                break;
+            case 11:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa11);
+                break;
+            case 12:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa12);
+                break;
+            case 13:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa13);
+                break;
+            default:
+                imageGallows.setBackgroundResource(R.drawable.akasztofa00);
+                break;
+        }
+
         //-- találati szintnek megfelelő szöveg megjelenítése
+        textViewTip.setText(resultGuesswork.toString());
     }
 
     /**
@@ -223,20 +281,46 @@ alphabet_ru = (new String(ruchars)).toCharArray();
      */
     private void makeUpWord() {
         // TODO: 2023. 05. 01.
-        thoughtWord = "mikroprocesszor";
+        thoughtWord = new StringBuilder("mikroprocesszor");
+        resultGuesswork = new StringBuilder();
+        for (int i = 0; i < thoughtWord.length(); i++) {
+            if(thoughtWord.charAt(i)==' '){
+                resultGuesswork.append(" ");
+            } else {
+                resultGuesswork.append("_");
+            }
+        }
+        textViewTip.setText(resultGuesswork);
     }
 
-    private void guesswork(String tipChar) {
+    private void guessingProcessing(String tipChar) {
         // TODO: 2023. 05. 01. A gondolt szó tartalmazza az adott karaktert?
-// thoughtWord.contains(tipChar))
 
-        // TODO: 2023. 05. 01. A megfejtés teljes?
+        if (thoughtWord.indexOf(tipChar.toLowerCase()) < 0) {
+            //-- Nem található benne - rossz tipp
+            if (badGuess < MAX_ERRORS) {
+                badGuess++;
+            } else {
+                badGuess = MAX_ERRORS;
+                endGame();
+            }
+        } else {
+            //-- Tartalmazza - jó tipp
+            for (int i = 0; i < thoughtWord.length(); i++) {
+                if(String.valueOf(thoughtWord.charAt(i))==tipChar){
+                    resultGuesswork.replace(i,i+1,tipChar);
+                }
+            }
+
+            // TODO: 2023. 05. 01. A megfejtés teljes?
+        }
+
 
     }
 
     private void startGame() {
         makeUpWord();
-
+        placeOfExecution();
     }
 
     private void loadJson() {
